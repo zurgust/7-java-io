@@ -15,7 +15,19 @@ public class Task01Main {
     }
 
     public static int checkSumOfStream(InputStream inputStream) throws IOException {
-        // your implementation here
-        return 0;
+        int checksum = 0; // Начальная контрольная сумма равна нулю
+        int currentByte;
+
+        if (inputStream == null) {
+            throw new IllegalArgumentException();
+        }
+
+        // Читаем байты из входного потока
+        while ((currentByte = inputStream.read()) != -1) {
+            checksum = Integer.rotateLeft(checksum, 1) ^ currentByte;
+        }
+
+        return checksum;
+
     }
 }
